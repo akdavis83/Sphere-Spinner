@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>Sphere</title>
+        <link rel="icon" href="cross fire.jpg" />
+		<style>
+			body {
+				background-color: #ffffff;
+				margin: 0;
+				overflow: hidden;
+			}
+            .invisible-link {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                opacity: 0;
+                cursor: pointer;
+              }
+              .invisible-button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 9999; /* make sure it's on top of other elements */
+                opacity: 0; /* make it invisible */
+                cursor: pointer; /* keep the pointer cursor to indicate it's clickable */
+              }
+              .overlay-text {
+                position: absolute;
+                top: 0;
+                left: 10;
+                width: 100%;
+                height: 100vh;
+                z-index: 999; /* make sure it's on top of all other elements */
+                text-align: center;
+                font-size: 20px;
+                color: #000000; /* adjust the color to your liking */
+                 /* allow clicks to pass through to underlying elements */
+                margin-top: 50px;
+              }
+		</style>
+	</head>
+	<body>
+            <div class="invisible-button">
+  
+            <button class="invisible-link" onclick="window.location.href='https://akdavis83.github.io/Alan-Davis/';"> </button>
+            </div>
+
+            <div class="overlay-text">18 For the preaching of the cross is to them that perish foolishness; but unto us which are saved it is the power of God. 19 For it is written, I will destroy the wisdom of the wise, and will bring to nothing the understanding of the prudent. 20 Where is the wise? where is the scribe? where is the disputer of this world? hath not God made foolish the wisdom of this world? 21 For after that in the wisdom of God the world by wisdom knew not God, it pleased God by the foolishness of preaching to save them that believe. 22 For the Jews require a sign, and the Greeks seek after wisdom: 23 But we preach Christ crucified, unto the Jews a stumblingblock, and unto the Greeks foolishness; 24 But unto them which are called, both Jews and Greeks, Christ the power of God, and the wisdom of God. (1 Corinthians 1:18-24 KJV)</div>
+
+
+            
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+		<script>
+
+			var camera, scene, renderer;
+			var geometry, material, mesh;
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera.position.z = 3;
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
+
+				geometry = new THREE.SphereGeometry( 1 );
+				material = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true } );
+
+				mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );				
+				
+			}
+
+			function animate( time ) {
+
+				mesh.rotation.x = time * 0.0005;
+				mesh.rotation.y = time * 0.001;
+
+				renderer.render( scene, camera );
+				requestAnimationFrame( animate );
+
+			}
+
+			init();
+			requestAnimationFrame( animate );
+
+		</script>
+
+	</body>
+</html>
